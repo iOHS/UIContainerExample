@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
 
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var pageControl: UIPageControl!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+		pageControl.numberOfPages = 4;
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +24,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+	}
 
 }
 
